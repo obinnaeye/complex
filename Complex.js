@@ -247,3 +247,44 @@ var alias = {
   sub: 'subtract'
   pow: "power"
 };
+for (var a in alias) prototype[a] = prototype[alias[a]];
+
+//This is extends the functionality of indicated method
+var extend = {
+
+  from: function(real, im){
+    if (real instanceof Complex) return new Complex(real.real, real.im);
+    var type = typeof real;
+    if (type == 'string'){
+      if (real == 'i') real = '0+1i';
+      var match = real.match(/(\d+)?([\+\-]\d*)[ij]/);
+      if (match){
+        real = match[1];
+        im = (match[2] == '+' || match[2] == '-') ? match[2] + '1' : match[2];
+      }
+    }
+    real = +real;
+    im = +im;
+    return new Complex(isNaN(real) ? 0 : real, isNaN(im) ? 0 : im);
+  },
+
+  fromPolar: function(r, phi){
+    return new Complex(1, 1).fromPolar(r, phi);
+  },
+
+  i: new Complex(0, 1).finalize(),
+
+  one: new Complex(1, 0).finalize()
+
+};
+
+for (var e in extend) Complex[e] = extend[e];
+
+var sinh = function(x){
+  return (Math.pow(Math.E, x) - Math.pow(Math.E, -x)) / 2;
+};
+
+var cosh = function(x){
+  return (Math.pow(Math.E, x) + Math.pow(Math.E, -x)) / 2;
+};
+
