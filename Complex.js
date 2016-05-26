@@ -83,3 +83,71 @@ var prototype = Complex.prototype = {
   negate: function(){
     return this.fromRect(-this.real, -this.im);
   },
+//Multiples two complex numbers or a complex and a real number.
+  multiply: function(z){
+    z = Complex.from(z);
+    var a = this.real, b = this.im;
+    return this.fromRect(
+      z.real * a - z.im * b,
+      b * z.real + z.im * a
+    );
+  },
+
+//Divides two complex numbers or a complex and a real number.
+  divide: function(z){
+    z = Complex.from(z);
+    var divident = (Math.pow(z.real, 2) + Math.pow(z.im, 2)),
+      a = this.real, b = this.im;
+    return this.fromRect(
+      (a * z.real + b * z.im) / divident,
+      (b * z.real - a * z.im) / divident
+    );
+  },
+
+//Adds two complex numbers or a complex number and a real number
+  add: function(z){
+    z = Complex.from(z);
+    return this.fromRect(this.real + z.real, this.im + z.im);
+  },
+
+//Subtracts two complex numbers or a complex number and a real number
+  subtract: function(z){
+    z = Complex.from(z);
+    return this.fromRect(this.real - z.real, this.im - z.im);
+  },
+
+ //Returns the result when a complex number is raised to power of w.
+ //z^w = e^(w*log(z))
+  pow: function(z){
+    z = Complex.from(z);
+    var result = z.multiply(this.clone().log()).exp();
+    return this.fromRect(result.real, result.im);
+  },
+
+//Returns the square root of a complex number
+  sqrt: function(){
+    var abs = this.magnitude(),
+      sgn = this.im < 0 ? -1 : 1;
+    return this.fromRect(
+      Math.sqrt((abs + this.real) / 2),
+      sgn * Math.sqrt((abs - this.real) / 2)
+    );
+  },
+
+//Returns the natural logarithm of a complex number to base E
+  log: function(k){
+    if (!k) k = 0;
+    return this.fromRect(
+      Math.log(this.magnitude()),
+      this.angle() + k * 2 * Math.PI
+    );
+  },
+
+//Calculates the e^z and the exponential of a complex number.
+//where the base is E 
+  exp: function(){
+    return this.fromPolar(
+      Math.exp(this.real),
+      this.im
+    );
+  },
