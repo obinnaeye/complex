@@ -151,3 +151,87 @@ var prototype = Complex.prototype = {
       this.im
     );
   },
+
+//Returns the sine of a complex number
+  sin: function(){
+    var a = this.real, b = this.im;
+    return this.fromRect(
+      Math.sin(a) * cosh(b),
+      Math.cos(a) * sinh(b)
+    );
+  },
+
+//Returns the cosine of a complex number
+  cos: function(){
+    var a = this.real, b = this.im;
+    return this.fromRect(
+      Math.cos(a) * cosh(b),
+      Math.sin(a) * sinh(b) * -1
+    );
+  },
+
+//Returns the tangent of a complex number
+  tan: function(){
+    var a = this.real, b = this.im,
+      divident = Math.cos(2 * a) + cosh(2 * b);
+    return this.fromRect(
+      Math.sin(2 * a) / divident,
+      sinh(2 * b) / divident
+    );
+  },
+
+//Returns the hyperbolic sine of a complex number
+  sinh: function(){
+    var a = this.real, b = this.im;
+    return this.fromRect(
+      sinh(a) * Math.cos(b),
+      cosh(a) * Math.sin(b)
+    );
+  },
+
+//Returns the hyperbolic cosine of a complex number
+  cosh: function(){
+    var a = this.real, b = this.im;
+    return this.fromRect(
+      cosh(a) * Math.cos(b),
+      sinh(a) * Math.sin(b)
+    );
+  },
+
+//Returns the hyperbolic tangent of a complex number
+  tanh: function(){
+    var a = this.real, b = this.im,
+      divident = cosh(2 * a) + Math.cos(2 * b);
+    return this.fromRect(
+      sinh(2 * a) / divident,
+      Math.sin(2 * b) / divident
+    );
+  },
+
+//Returns a new Complex instance with the same real and imaginary properties
+  clone: function(){
+    return new Complex(this.real, this.im);
+  },
+
+//Returns a string representation of the complex number
+  toString: function(polar){
+    if (polar) return this.magnitude() + ' ' + this.angle();
+
+    var ret = '', a = this.real, b = this.im;
+    if (a) ret += a;
+    if (a && b || b < 0) ret += b < 0 ? '-' : '+';
+    if (b){
+      var absIm = Math.abs(b);
+      if (absIm != 1) ret += absIm;
+      ret += 'i';
+    }
+    return ret || '0';
+  },
+
+//Compares if two complex numbers are the same
+  equals: function(z){
+    z = Complex.from(z);
+    return (z.real == this.real && z.im == this.im);
+  }
+
+};
