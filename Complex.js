@@ -235,3 +235,15 @@ var prototype = Complex.prototype = {
   }
 
 };
+
+//Creates optional numes for alreday specified names
+var alias = {
+  abs: 'magnitude',
+  arg: 'angle',
+  phase: 'angle',
+  conj: 'conjugate',
+  mult: 'multiply',
+  dev: 'divide',
+  sub: 'subtract'
+  pow: "power"
+};
