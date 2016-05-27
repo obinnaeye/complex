@@ -24,12 +24,6 @@ An in line function like Number.from.
 ######var z = Complex.from(5);
 ######var z = Complex.from('2+5i');
 
-##Function: Complex.fromPolar
-Creates a complex instance from a polar representation: r*e^(phi*i) = r (cos(phi) + i sin(phi))
-######var z = Complex.fromPolar(r, phi);
-####Arguments:
-1.	r (number) the radius/magnitude of the number
-2.	phi (number) the angle/phase of the number
 Constant: Complex.i
 A instance of the imaginary unit i
 ######var i = Complex.i;
