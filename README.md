@@ -6,23 +6,23 @@ To use it, the libry has to be required in your code. You can use
 ######var Complex = require("Complex")
 
 ##Complex constructor:
-############var z = new Complex(real, im);
-########Arguments:
+######var z = new Complex(real, im);
+####Arguments:
 ######1.	real (number) the real part of the number
 ######2.	im (number) the imaginary part of the number
 
 ##Function: Complex.from
 An in line function like Number.from.
-############var z = Complex.from(real[, im]);
-########Arguments:
+######var z = Complex.from(real[, im]);
+####Arguments:
 ######1.	real (number) the real part of the number
 ######2.	im (number, optional) the imaginary part of the number
 #####Or
 ######1.	real (string) a string representation of the number, for example 1+4i
 ######Examples:
-############var z = Complex.from(2, 4);
-############var z = Complex.from(5);
-############var z = Complex.from('2+5i');
+######var z = Complex.from(2, 4);
+######var z = Complex.from(5);
+######var z = Complex.from('2+5i');
 
 ##Function: Complex.fromPolar
 Creates a complex instance from a polar representation: r*e^(phi*i) = r (cos(phi) + i sin(phi))
