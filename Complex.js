@@ -1,11 +1,12 @@
-/*This is a complex number library that can perform some basic operations on complex number
+/*,.This is a complex number library that can perform some basic operations on complex number
 
 */
 
 // Creates the class Complex and initializes it. 
-var Complex = function(real, imaginary){
+
+var Complex = function(real, im){
   this.real = real;
-  this.im = imaginary;
+  this.im = im;
 };
 
 /*Each block of codes here is a function(method) prototype to Complex. It is the same as using 
@@ -49,6 +50,7 @@ var prototype = Complex.prototype = {
       this.im.toFixed(k)
     );
   },
+
 //Finalizes the instance. The number will not change and any other method 
 //call will return a new instance.
   finalize: function(){
@@ -83,6 +85,7 @@ var prototype = Complex.prototype = {
   negate: function(){
     return this.fromRect(-this.real, -this.im);
   },
+
 //Multiples two complex numbers or a complex and a real number.
   multiply: function(z){
     z = Complex.from(z);
@@ -116,11 +119,11 @@ var prototype = Complex.prototype = {
     return this.fromRect(this.real - z.real, this.im - z.im);
   },
 
- //Returns the result when a complex number is raised to power of w.
+//Returns the result when a complex number is raised to power of w.
  //z^w = e^(w*log(z))
   pow: function(z){
     z = Complex.from(z);
-    var result = z.multiply(this.clone().log()).exp();
+    var result = z.multiply(this.clone().log()).exp(); // z^w = e^(w*log(z))
     return this.fromRect(result.real, result.im);
   },
 
@@ -245,8 +248,8 @@ var alias = {
   mult: 'multiply',
   dev: 'divide',
   sub: 'subtract'
-  pow: "power"
 };
+
 for (var a in alias) prototype[a] = prototype[alias[a]];
 
 //This is extends the functionality of indicated method
@@ -287,4 +290,5 @@ var sinh = function(x){
 var cosh = function(x){
   return (Math.pow(Math.E, x) + Math.pow(Math.E, -x)) / 2;
 };
+
 
