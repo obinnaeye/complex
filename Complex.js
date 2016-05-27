@@ -22,7 +22,7 @@ var prototype = Complex.prototype = {
 
 // Creates a complex number from the polar form z = r(cosθ + isinθ).
   fromPolar: function(r, phi){
-    if (typeof r == 'string'){
+    if (typeof r === 'string'){
       var parts = r.split(' ');
       r = parts[0];
       phi = parts[1];
@@ -234,7 +234,7 @@ var prototype = Complex.prototype = {
 //Compares if two complex numbers are the same
   equals: function(z){
     z = Complex.from(z);
-    return (z.real == this.real && z.im == this.im);
+    return (z.real === this.real && z.im === this.im);
   }
 
 };
@@ -258,12 +258,12 @@ var extend = {
   from: function(real, im){
     if (real instanceof Complex) return new Complex(real.real, real.im);
     var type = typeof real;
-    if (type == 'string'){
-      if (real == 'i') real = '0+1i';
+    if (type === 'string'){
+      if (real === 'i') real = '0+1i';
       var match = real.match(/(\d+)?([\+\-]\d*)[ij]/);
       if (match){
         real = match[1];
-        im = (match[2] == '+' || match[2] == '-') ? match[2] + '1' : match[2];
+        im = (match[2] === '+' || match[2] === '-') ? match[2] + '1' : match[2];
       }
     }
     real = +real;
